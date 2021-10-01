@@ -17,3 +17,23 @@ public:
         return total;
     }
 };
+
+class Solution {
+public:
+    
+    std::map<int,int> stairmap;
+    
+    int climbStairs(int n) {
+        if (n <= 0) return 0;
+        if (n == 1) return 1;
+        if (n == 2) return 2;
+        
+        map<int,int>::iterator iter;
+        iter = stairmap.find(n);
+        if (iter != stairmap.end()) return iter->second;
+        
+        int result = climbStairs(n-1) + climbStairs(n-2);
+        stairmap.insert(pair<int,int>(n, result));
+        return result;
+    }
+};
